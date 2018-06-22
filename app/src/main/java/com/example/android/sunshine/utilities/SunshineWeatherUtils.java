@@ -64,19 +64,19 @@ public final class SunshineWeatherUtils {
         String direction = "Unknown";
         if (degrees >= 337.5 || degrees < 22.5) {
             direction = "N";
-        } else if (degrees >= 22.5 && degrees < 67.5) {
+        } else if (degrees < 67.5) {
             direction = "NE";
-        } else if (degrees >= 67.5 && degrees < 112.5) {
+        } else if (degrees < 112.5) {
             direction = "E";
-        } else if (degrees >= 112.5 && degrees < 157.5) {
+        } else if (degrees < 157.5) {
             direction = "SE";
-        } else if (degrees >= 157.5 && degrees < 202.5) {
+        } else if (degrees < 202.5) {
             direction = "S";
-        } else if (degrees >= 202.5 && degrees < 247.5) {
+        } else if (degrees < 247.5) {
             direction = "SW";
-        } else if (degrees >= 247.5 && degrees < 292.5) {
+        } else if (degrees < 292.5) {
             direction = "W";
-        } else if (degrees >= 292.5 && degrees < 337.5) {
+        } else {
             direction = "NW";
         }
 
@@ -294,7 +294,7 @@ public final class SunshineWeatherUtils {
             return R.drawable.ic_snow;
         } else if (weatherId >= 701 && weatherId <= 761) {
             return R.drawable.ic_fog;
-        } else if (weatherId == 761 || weatherId == 771 || weatherId == 781) {
+        } else if (weatherId == 771 || weatherId == 781) {
             return R.drawable.ic_storm;
         } else if (weatherId == 800) {
             return R.drawable.ic_clear;
@@ -346,7 +346,7 @@ public final class SunshineWeatherUtils {
             return R.drawable.art_snow;
         } else if (weatherId >= 701 && weatherId <= 761) {
             return R.drawable.art_fog;
-        } else if (weatherId == 761 || weatherId == 771 || weatherId == 781) {
+        } else if (weatherId == 771 || weatherId == 781) {
             return R.drawable.art_storm;
         } else if (weatherId == 800) {
             return R.drawable.art_clear;

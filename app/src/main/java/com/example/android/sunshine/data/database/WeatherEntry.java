@@ -28,14 +28,14 @@ public class WeatherEntry {
 
     @PrimaryKey(autoGenerate = true)
     private int id;
-    private int weatherIconId;
-    private Date date;
-    private double min;
-    private double max;
-    private double humidity;
-    private double pressure;
-    private double wind;
-    private double degrees;
+    private final int weatherIconId;
+    private final Date date;
+    private final double min;
+    private final double max;
+    private final double humidity;
+    private final double pressure;
+    private final double wind;
+    private final double degrees;
 
     /**
      * This constructor is used by Room.

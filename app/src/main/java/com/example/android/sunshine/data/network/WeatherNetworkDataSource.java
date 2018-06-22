@@ -15,6 +15,7 @@
  */
 package com.example.android.sunshine.data.network;
 
+import android.annotation.SuppressLint;
 import android.arch.lifecycle.MutableLiveData;
 import android.content.Context;
 import android.content.Intent;
@@ -50,6 +51,7 @@ public class WeatherNetworkDataSource {
 
     // For Singleton instantiation
     private static final Object LOCK = new Object();
+    @SuppressLint("StaticFieldLeak")
     private static WeatherNetworkDataSource sInstance;
     private final Context mContext;
 

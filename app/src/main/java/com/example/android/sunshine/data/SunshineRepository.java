@@ -20,6 +20,7 @@ import android.arch.lifecycle.LiveData;
 import android.util.Log;
 
 import com.example.android.sunshine.AppExecutors;
+import com.example.android.sunshine.data.database.ListWeatherEntry;
 import com.example.android.sunshine.data.database.WeatherDao;
 import com.example.android.sunshine.data.database.WeatherEntry;
 import com.example.android.sunshine.data.network.WeatherNetworkDataSource;
@@ -52,17 +53,15 @@ public class SunshineRepository {
 
         LiveData<WeatherEntry[]> networkData
                 = mWeatherNetworkDataSource.getCurrentWeatherForecasts();
-        networkData.observeForever(newForecastsFromNetwork -> {
-            mExecutors.diskIO().execute(() -> {
-                // Deletes old historical data
-                deleteOldData();
-                Log.d(LOG_TAG, "Old weather deleted");
+        networkData.observeForever(newForecastsFromNetwork -> mExecutors.diskIO().execute(() -> {
+            // Deletes old historical data
+            deleteOldData();
+            Log.d(LOG_TAG, "Old weather deleted");
 
-                // Insert our new weather data into Sunshine's database
-                mWeatherDao.bulkInsert(newForecastsFromNetwork);
-                Log.d(LOG_TAG, "New values inserted");
-            });
-        });
+            // Insert our new weather data into Sunshine's database
+            mWeatherDao.bulkInsert(newForecastsFromNetwork);
+            Log.d(LOG_TAG, "New values inserted");
+        }));
     }
 
     public synchronized static SunshineRepository getInstance(
@@ -120,7 +119,7 @@ public class SunshineRepository {
         return (count < WeatherNetworkDataSource.NUM_DAYS);
     }
 
-    public LiveData<List<WeatherEntry>> getCurrentWeatherForecasts() {
+    public LiveData<List<ListWeatherEntry>> getCurrentWeatherForecasts() {
         initializeData();
         Date today = SunshineDateUtils.getNormalizedUtcDateForToday();
         return mWeatherDao.getCurrentWeatherForecasts(today);

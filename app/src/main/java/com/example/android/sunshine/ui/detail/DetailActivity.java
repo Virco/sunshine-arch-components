@@ -20,7 +20,6 @@ import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
-import com.example.android.sunshine.AppExecutors;
 import com.example.android.sunshine.R;
 import com.example.android.sunshine.data.database.WeatherEntry;
 import com.example.android.sunshine.databinding.ActivityDetailBinding;
@@ -46,8 +45,6 @@ public class DetailActivity extends AppCompatActivity {
      */
     private ActivityDetailBinding mDetailBinding;
 
-    private DetailActivityViewModel mViewModel;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,7 +55,7 @@ public class DetailActivity extends AppCompatActivity {
 
         DetailViewModelFactory factory
                 = InjectorUtils.provideDetailViewModelFactory(this.getApplication(), date);
-        mViewModel = ViewModelProviders.of(this, factory).get(DetailActivityViewModel.class);
+        DetailActivityViewModel mViewModel = ViewModelProviders.of(this, factory).get(DetailActivityViewModel.class);
 
         mViewModel.getWeather().observe(this, weatherEntry -> {
             if (weatherEntry != null) {

@@ -11,7 +11,7 @@ import android.util.Log;
 @TypeConverters(DateConverter.class)
 public abstract class SunshineDatabase extends RoomDatabase {
 
-    private static String TAG = SunshineDatabase.class.getSimpleName();
+    private static final String TAG = SunshineDatabase.class.getSimpleName();
     private static final String DATABASE_NAME = "weather";
 
     // For Single instantiation

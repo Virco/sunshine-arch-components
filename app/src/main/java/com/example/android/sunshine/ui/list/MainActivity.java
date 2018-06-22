@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity implements
     private RecyclerView mRecyclerView;
     private int mPosition = RecyclerView.NO_POSITION;
     private ProgressBar mLoadingIndicator;
-    private MainActivityViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements
 
         MainViewModelFactory factory
                 = InjectorUtils.provideMainActivityViewModelFactory(this.getApplicationContext());
-        viewModel = ViewModelProviders.of(this, factory).get(MainActivityViewModel.class);
+        MainActivityViewModel viewModel = ViewModelProviders.of(this, factory).get(MainActivityViewModel.class);
 
         viewModel.getForecast().observe(this, weatherEntries -> {
             mForecastAdapter.swapForecast(weatherEntries);

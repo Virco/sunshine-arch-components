@@ -27,10 +27,10 @@ import java.util.Date;
 /**
  * {@link ViewModel} for {@link DetailActivity}
  */
-public class DetailActivityViewModel extends ViewModel {
+class DetailActivityViewModel extends ViewModel {
 
     // Weather forecast the user is looking at
-    private LiveData<WeatherEntry> weather;
+    private final LiveData<WeatherEntry> weather;
 
     DetailActivityViewModel(SunshineRepository repository, Date date) {
         weather = repository.getWeatherByDate(date);
